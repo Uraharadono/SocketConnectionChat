@@ -34,6 +34,7 @@ namespace SocketServer
             //
             InitializeComponent();
 
+            CheckForIllegalCrossThreadCalls = false;
             //
             // TODO: Add any constructor code after InitializeComponent call
             //
@@ -202,7 +203,6 @@ namespace SocketServer
                 // create the call back for any client connections...
                 m_socListener.BeginAccept(new AsyncCallback(OnClientConnect), null);
                 cmdListen.Enabled = false;
-
             }
             catch (SocketException se)
             {
@@ -265,6 +265,12 @@ namespace SocketServer
                 System.Text.Decoder d = System.Text.Encoding.UTF8.GetDecoder();
                 int charLen = d.GetChars(theSockId.dataBuffer, 0, iRx, chars, 0);
                 String szData = new String(chars);
+
+                //if (txtDataRx.InvokeRequired)
+                //{
+                //    txtDataRx.Invoke(new MethodInvoker(delegate { txtDataRx.Text = txtDataRx.Text + szData; }));
+                //}
+
                 txtDataRx.Text = txtDataRx.Text + szData;
                 WaitForData(m_socWorker);
             }

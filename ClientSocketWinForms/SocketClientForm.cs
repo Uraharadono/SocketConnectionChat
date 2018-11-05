@@ -167,7 +167,7 @@ namespace Project01
             this.txtIPAddress.Name = "txtIPAddress";
             this.txtIPAddress.Size = new System.Drawing.Size(248, 20);
             this.txtIPAddress.TabIndex = 2;
-            this.txtIPAddress.Text = "10.73.29.128";
+            this.txtIPAddress.Text = "127.0.0.1";
             // 
             // label1
             // 
@@ -230,14 +230,12 @@ namespace Project01
                 String szData = "Hello There";
                 byte[] byData = System.Text.Encoding.ASCII.GetBytes(szData);
                 m_socClient.Send(byData);
-
             }
             catch (SocketException se)
             {
                 MessageBox.Show(se.Message);
             }
         }
-
 
         private void cmdSendData_Click(object sender, EventArgs e)
         {
