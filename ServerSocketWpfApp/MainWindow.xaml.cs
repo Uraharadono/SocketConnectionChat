@@ -32,7 +32,7 @@ namespace ServerSocketWpfApp
 
         private void tbAux_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate()
+            Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate()
             {
                 tbMsgReceived.Text = tbAux.Text;
             }
@@ -177,7 +177,7 @@ namespace ServerSocketWpfApp
                         string str = content.Substring(0, content.LastIndexOf("<Client Quit>"));
 
                         //this is used because the UI couldn't be accessed from an external Thread
-                        this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate()
+                        Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate()
                         {
                             tbAux.Text = "Read " + str.Length * 2 + " bytes from client.\n Data: " + str;
                         }
@@ -194,7 +194,7 @@ namespace ServerSocketWpfApp
                             new AsyncCallback(ReceiveCallback), obj);
                     }
 
-                    this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate()
+                    Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate()
                     {
                         tbAux.Text = content;
                     }
